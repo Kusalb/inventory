@@ -6,14 +6,15 @@ use Illuminate\Http\Request;
 
 class InventoryController extends Controller
 {
-    public function __construct()
-    {
-      $this->middleware('auth');
-    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $inventory = Inventory::all();
-        return view('inventory.index',compact('inventory'));
+        return view('inventory.index',compact('books'));
     }
     /**
      * Show the form for creating a new resource.
@@ -32,15 +33,7 @@ class InventoryController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'quantity' => 'required | unique:inventory',
-            'name' => 'required | string',
-        ]);
-        $input = $request->all();
-        $inventory = new  inventory();
-        $inventory->name = $input['name'];
-        $inventory->quantity = $input['quantity'];
-        $inventory->save();
+        Inventory::create($request->all());
         return redirect('/inventory/index');
     }
     /**
@@ -73,9 +66,8 @@ class InventoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $student= Inventory::findorfail($id);
-        $input = $request->all();
-        $student->update($input);
+        $book = Inventory::findorfail($id);        $input = $request->all();
+        $book->update($input);
         return redirect('inventory/index');
     }
     /**
@@ -86,9 +78,10 @@ class InventoryController extends Controller
      */
     public function destroy($id)
     {
-        $inventory = Inventory::find($id);
-        $inventory->delete();
+        $book = Inventory::findorfail($id);
+        $book->delete();
         return redirect('inventory/index');
     }
 
 }
+
