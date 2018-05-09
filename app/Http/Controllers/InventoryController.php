@@ -44,7 +44,7 @@ class InventoryController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('inventory.show', ['inventory'=>Inventory::findOrFail($id)]);
     }
     /**
      * Show the form for editing the specified resource.
