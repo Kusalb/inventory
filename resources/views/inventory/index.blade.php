@@ -16,7 +16,7 @@
                             <tr>
                                 <th>S.N.</th>
                                 <th>Product Name</th>
-                                <th>Product Quantity</th>
+                                <th>Product Quantity </th>
                                 <th>Edit</th>
                                 <th>Delete</th>
 
@@ -29,11 +29,11 @@
                                 @foreach($inventorys as $inventory)
                                     <tr>
                                         <td>{{$count++}}</td>
-                                        <td>{{ $inventory->name }}</td>
+                                        <td>{{ $inventory->name}}</td>
                                         <td>{{ $inventory->quantity }}</td>
 
 
-                                        <td><a href="{{action('InventoryController@edit', $inventory->id)}}" class="btn btn-warning"><i class="far fa-edit"></i></a></td>
+                                        <td><a href="{{action('InventoryController@edit', $inventory->id)}}" class="btn btn-warning"><i class="far fa-edit"></i>Edit</a></td>
                                         <td>
                                             <form action="{{action('InventoryController@destroy', $inventory->id)}}" method="post">
                                                 @csrf
