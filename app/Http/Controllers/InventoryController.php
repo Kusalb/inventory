@@ -33,13 +33,13 @@ class InventoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'roll_no' => 'required | unique:inventory',
+            'quantity' => 'required | unique:inventory',
             'name' => 'required | string',
         ]);
         $input = $request->all();
-        $inventory = new  Inventory();
+        $inventory = new  inventory();
         $inventory->name = $input['name'];
-        $inventory->roll_no = $input['quantity'];
+        $inventory->quantity = $input['quantity'];
         $inventory->save();
         return redirect('/inventory/index');
     }

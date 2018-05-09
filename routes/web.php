@@ -28,7 +28,7 @@ Route::resource('inventory','InventoryController');
 
 
 Route::get('/inventory/create',['as'=>'inventory.create','uses'=>'InventoryController@create']);
-Route::post('/inventory/store',['as'=>'inventory.store','uses'=>'InvnentoryController@store']);
+Route::post('/inventory/store',['as'=>'inventory.store','uses'=>'InventoryController@store']);
 Route::get('/inventory/index',['as'=>'inventory.index','uses'=>'InventoryController@index']);
 
 
