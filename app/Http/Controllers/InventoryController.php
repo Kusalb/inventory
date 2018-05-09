@@ -12,8 +12,10 @@ class InventoryController extends Controller
     }
     public function index()
     {
-        $inventory = Inventory::all();
-        return view('inventory.index',compact('inventory'));
+
+        $inventorys = Inventory::all();
+
+        return view('inventory.index',compact('inventorys'));
     }
     /**
      * Show the form for creating a new resource.
@@ -23,6 +25,7 @@ class InventoryController extends Controller
     public function create()
     {
         return view('inventory.create');
+
     }
     /**
      * Store a newly created resource in storage.
@@ -33,22 +36,18 @@ class InventoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'quantity' => 'required | unique:inventory',
-            'name' => 'required | string',
+            'name' => 'required | unique:inventorys',
+            'quantity' => 'required | integer',
         ]);
         $input = $request->all();
-        $inventory = new  inventory();
-        $inventory->name = $input['name'];
-        $inventory->quantity = $input['quantity'];
+        $inventory  = new  Inventory();
+        $inventory->name=$input['name'];
+        $inventory->quantity=$input['quantity'];
         $inventory->save();
+
         return redirect('/inventory/index');
     }
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         return view('inventory.show', ['inventory'=>Inventory::findOrFail($id)]);
@@ -64,6 +63,7 @@ class InventoryController extends Controller
         $inventory=Inventory::find($id);
         return view('inventory.edit', compact('inventory','id'));
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -73,11 +73,12 @@ class InventoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $student= Inventory::findorfail($id);
+        $inventory= Inventory::findorfail($id);
         $input = $request->all();
-        $student->update($input);
+        $inventory->update($input);
         return redirect('inventory/index');
     }
+
     /**
      * Remove the specified resource from storage.
      *
