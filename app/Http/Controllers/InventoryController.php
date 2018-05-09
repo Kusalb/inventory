@@ -35,15 +35,9 @@ class InventoryController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required | unique:inventorys',
-            'quantity' => 'required | integer',
-        ]);
         $input = $request->all();
-        $inventory  = new  Inventory();
-        $inventory->name=$input['name'];
-        $inventory->quantity=$input['quantity'];
-        $inventory->save();
+
+        $this->create($input);
 
         return redirect('/inventory/index');
     }

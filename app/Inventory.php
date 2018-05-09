@@ -6,6 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Inventory extends Model
 {
-    protected $primaryKey = 'id';
     protected $guarded=[];
 }
