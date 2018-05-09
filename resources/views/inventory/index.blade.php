@@ -25,8 +25,8 @@
                             </thead>
                             <tbody>
                             <?php $count = 1; ?>
-                            @if(!empty($inventorys))
-                                @foreach($inventorys as $inventory)
+                            @if(!empty($inventory1))
+                                @foreach($inventory1 as $inventory)
                                     <tr>
                                         <td>{{$count++}}</td>
                                         <td>{{ $inventory->name}}</td>
