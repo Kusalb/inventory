@@ -35,11 +35,8 @@ class InventoryController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-
-        $this->create($input);
-
-        return redirect('/inventory/index');
+        Inventory::create($request->all());
+        return Redirect('/inventory');
     }
 
     public function show($id)
@@ -70,7 +67,7 @@ class InventoryController extends Controller
         $inventory= Inventory::findorfail($id);
         $input = $request->all();
         $inventory->update($input);
-        return redirect('inventory/index');
+        return redirect('inventory');
     }
 
     /**
@@ -83,7 +80,7 @@ class InventoryController extends Controller
     {
         $inventory = Inventory::find($id);
         $inventory->delete();
-        return redirect('inventory/index');
+        return redirect('inventory');
     }
 
 }
